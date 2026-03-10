@@ -1,0 +1,72 @@
+/* 基础设置 */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button {
+    margin: 0;
+    padding: 0;
+}
+
+ul,ol {
+    list-style: none;
+}
+
+image {
+    /* 底部留白 */
+    display: block;
+    border: 0;
+}
+
+b,strong {
+    font-weight: 400;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    /* 父元素字号百分比 */
+    font-size: 100%;
+    font-weight: normal;
+}
+
+i,em {
+    /* 不倾斜 */
+    font-style: normal;
+}
+
+u,ins,s,del {
+    /* 去掉下划线 */
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,th {
+    border: 1px solid #999;
+}
+
+input,button {
+    /* 去掉轮廓线 */
+    outline: none;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+a:hover {
+    color: #DD302D;
+    text-decoration: none;
+}
+
+.leftfix {
+    float: left;
+}
+.rightfix {
+    float: right;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
