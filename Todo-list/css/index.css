@@ -1,107 +1,117 @@
-/* 全局重置 + 基础样式 */
+/* 全局重置 + 基础样式 - shadcn 风格 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", "Microsoft Yahei", sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
 }
 
-/* 自定义滚动条 */
+/* 自定义滚动条 - 极简风格 */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 3px;
+    background: #e5e7eb;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #bbb;
+    background: #d1d5db;
 }
 
+/* 基础布局 */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f9fafb; /* 灰阶浅底 */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
 }
 
-/* 主容器 */
+/* 主容器 - shadcn 轻卡片风格 */
 .container {
     width: 100%;
     max-width: 600px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 30px;
-    position: relative;
+    background: #ffffff;
+    border-radius: 10px; /* 统一圆角 */
+    border: 1px solid #e5e7eb; /* 弱对比边框 */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 基础阴影 */
+    padding: 32px;
 }
 
 /* 头部 */
 .header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 .header h1 {
-    color: #2d3748;
-    font-size: 28px;
+    color: #111827; /* 灰阶深文本 */
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 .header h1 i {
-    color: #667eea;
+    color: #6366f1; /* 品牌主色 */
 }
 .subtitle {
-    color: #718096;
+    color: #6b7280; /* 灰阶次文本 */
     font-size: 14px;
 }
 
 /* 输入区域 */
 .input-group {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    position: relative;
+    gap: 12px;
+    margin-bottom: 28px;
 }
 #todo-input {
     flex: 1;
-    padding: 14px 20px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb; /* 弱对比边框 */
+    border-radius: 10px; /* 统一圆角 */
     font-size: 16px;
     outline: none;
-    transition: all 0.3s ease;
-    background: #f8fafc;
+    transition: all 0.2s ease;
+    background: #f9fafb;
+    color: #111827;
 }
 #todo-input:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #6366f1; /* 品牌主色聚焦 */
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1); /* 轻量级聚焦阴影 */
+    background: #ffffff;
 }
+#todo-input:focus::placeholder {
+    color: #d1d5db;
+}
+
+/* 添加按钮 - shadcn 按钮风格 */
 #add-btn {
-    padding: 14px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 12px 20px;
+    background: #6366f1; /* 品牌主色 */
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
+    border-radius: 10px; /* 统一圆角 */
     cursor: pointer;
     font-size: 16px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 基础阴影 */
 }
 #add-btn:hover {
-    transform: translateY(-2px);
+    background: #5855eb; /* 主色hover加深 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* hover阴影层级 */
 }
 #add-btn:active {
-    transform: translateY(0);
+    background: #4f46e5;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 还原基础阴影 */
 }
 
 /* 筛选 + 统计区域 */
@@ -109,7 +119,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 .filter-group {
     display: flex;
@@ -117,29 +127,30 @@ body {
 }
 .filter-btn {
     padding: 8px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background: #f8fafc;
-    color: #4a5568;
+    border: 1px solid #e5e7eb; /* 弱对比边框 */
+    border-radius: 10px; /* 统一圆角 */
+    background: #f9fafb;
+    color: #374151;
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 14px;
+    font-weight: 500;
 }
 .filter-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #6366f1; /* 品牌主色激活 */
+    color: #ffffff;
     border-color: transparent;
 }
 .filter-btn:hover:not(.active) {
-    border-color: #cbd5e1;
-    background: #f1f5f9;
+    border-color: #d1d5db;
+    background: #f3f4f6;
 }
 .stats {
-    color: #718096;
+    color: #6b7280; /* 灰阶次文本 */
     font-size: 14px;
 }
 .stats b {
-    color: #667eea;
+    color: #6366f1; /* 品牌主色强调 */
     font-weight: 600;
 }
 
@@ -148,80 +159,75 @@ body {
     list-style: none;
     max-height: 400px;
     overflow-y: auto;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 .todo-item {
     display: flex;
     align-items: center;
     padding: 16px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    border-radius: 10px; /* 统一圆角 */
+    margin-bottom: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb; /* 弱对比边框 */
     transition: all 0.2s ease;
-    animation: fadeIn 0.3s ease;
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 .todo-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-color: #d1d5db;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* hover轻阴影 */
 }
 .todo-item.completed {
-    opacity: 0.8;
-    background: #f0f8fb;
+    background: #f3f4f6;
+    opacity: 0.9;
 }
 .todo-item.completed .todo-text {
     text-decoration: line-through;
-    color: #a0aec0;
+    color: #9ca3af; /* 灰阶浅文本 */
 }
 .todo-checkbox {
     width: 20px;
     height: 20px;
-    accent-color: #667eea;
+    accent-color: #6366f1; /* 品牌主色复选框 */
     cursor: pointer;
     margin-right: 12px;
 }
 .todo-text {
     flex: 1;
     font-size: 16px;
-    color: #2d3748;
+    color: #111827; /* 灰阶深文本 */
 }
+
+/* 删除按钮 - shadcn 危险按钮风格 */
 .delete-btn {
     padding: 8px 12px;
-    background: #fef2f2;
-    color: #ef4444;
+    background: #f9fafb;
+    color: #ef4444; /* 危险色（仅保留这一个非主色/灰阶） */
     border: 1px solid #fee2e2;
-    border-radius: 8px;
+    border-radius: 10px; /* 统一圆角 */
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 4px;
+    font-size: 14px;
 }
 .delete-btn:hover {
     background: #ef4444;
-    color: white;
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 /* 清空按钮 */
 .clear-btn {
     width: 100%;
     padding: 12px;
-    border: 1px solid #fee2e2;
-    border-radius: 10px;
-    background: transparent;
-    color: #ef4444;
+    border: 1px solid #fee2e2; /* 弱对比边框 */
+    border-radius: 10px; /* 统一圆角 */
+    background: #f9fafb;
+    color: #ef4444; /* 危险色 */
     cursor: pointer;
     font-size: 14px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -230,20 +236,21 @@ body {
 }
 .clear-btn:hover {
     background: #fef2f2;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* 空列表提示 */
 .empty-tip {
     text-align: center;
-    padding: 40px 20px;
-    color: #a0aec0;
+    padding: 48px 20px;
+    color: #9ca3af; /* 灰阶浅文本 */
     font-size: 16px;
 }
 .empty-tip i {
     font-size: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: block;
-    color: #cbd5e1;
+    color: #d1d5db; /* 灰阶超浅文本 */
 }
 
 /* 响应式适配 */
@@ -254,9 +261,13 @@ body {
     .filter-stats-group {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 12px;
     }
     .input-group {
         flex-direction: column;
+    }
+    #add-btn {
+        width: 100%;
+        justify-content: center;
     }
 }

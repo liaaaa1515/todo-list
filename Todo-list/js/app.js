@@ -1,4 +1,3 @@
-// 全局DOM元素
 const todoInput = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
 const todoList = document.getElementById('todo-list');
@@ -6,23 +5,16 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const activeCountEl = document.getElementById('active-count');
 const clearCompletedBtn = document.getElementById('clear-completed');
 
-// 待办数据（本地存储持久化）
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-// 初始化
 init();
 
-// ========== 初始化函数 ==========
 function init() {
-    // 渲染列表
     renderTodos();
-    // 更新未完成数量
     updateActiveCount();
-    // 绑定事件
     bindEvents();
 }
 
-// ========== 事件绑定 ==========
 function bindEvents() {
     // 添加待办（按钮 + 回车）
     addBtn.addEventListener('click', addTodo);
@@ -43,14 +35,16 @@ function bindEvents() {
     clearCompletedBtn.addEventListener('click', clearCompleted);
 }
 
-// ========== 核心功能 ==========
 // 添加待办
 function addTodo() {
     const text = todoInput.value.trim();
     if (!text) {
-        // 输入为空时的反馈
+        // 输入为空时的反馈（适配新样式）
         todoInput.classList.add('border-red-500');
-        setTimeout(() => todoInput.classList.remove('border-red-500'), 1000);
+        todoInput.style.borderColor = '#ef4444';
+        setTimeout(() => {
+            todoInput.style.borderColor = '#e5e7eb';
+        }, 1000);
         return;
     }
 
@@ -67,11 +61,9 @@ function addTodo() {
     saveToLocalStorage();
     // 重新渲染
     renderTodos();
-    // 更新统计
     updateActiveCount();
     // 清空输入框
     todoInput.value = '';
-    // 聚焦输入框
     todoInput.focus();
 }
 
@@ -154,7 +146,8 @@ function deleteTodo(id) {
 
 // 清空已完成
 function clearCompleted() {
-    if (todos.filter(todo => todo.completed).length === 0) return;
+    const completedCount = todos.filter(todo => todo.completed).length;
+    if (completedCount === 0) return;
     
     if (confirm('确定要清空已完成的待办吗？')) {
         todos = todos.filter(todo => !todo.completed);
@@ -164,19 +157,16 @@ function clearCompleted() {
     }
 }
 
-// ========== 辅助函数 ==========
-// 获取当前激活的筛选条件
+
 function getCurrentFilter() {
     return document.querySelector('.filter-btn.active').dataset.filter;
 }
 
-// 更新未完成数量统计
 function updateActiveCount() {
     const activeCount = todos.filter(todo => !todo.completed).length;
     activeCountEl.textContent = activeCount;
 }
 
-// 保存到本地存储
 function saveToLocalStorage() {
     localStorage.setItem('todos', JSON.stringify(todos));
 }
